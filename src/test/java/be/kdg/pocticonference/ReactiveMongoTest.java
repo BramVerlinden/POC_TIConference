@@ -34,9 +34,7 @@ public class ReactiveMongoTest {
                             assertNotNull(cameraMessage.getId());
                             assertNotNull(cameraMessage.getCreatedDate());
                         }
-                )
-                .expectComplete()
-                .verify();
+                );
 
     }
 }
