@@ -29,9 +29,16 @@ dependencies {
     implementation 'org.springframework.retry:spring-retry'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     compileOnly 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    compile group: 'io.projectreactor', name: 'reactor-core', version: '3.2.5.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-mongodb', version: '2.1.4.RELEASE'
+    compile group: 'org.mongodb', name: 'mongodb-driver-reactivestreams', version: '1.10.0'
 
-    compile group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.2.0'
-    compile group: 'cz.jirutka.spring', name: 'embedmongo-spring', version: '1.3.1'
+
+    //TEST
+    testCompile group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.2.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompile group: 'io.projectreactor', name: 'reactor-test', version: '3.1.0.RELEASE'
+
     
 }

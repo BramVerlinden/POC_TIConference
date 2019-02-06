@@ -1,5 +1,6 @@
 package be.kdg.pocticonference.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,10 +21,13 @@ public class CameraMessage {
     @Id
     private int id;
 
+    @JsonAlias("camera_id")
     private int cameraId;
 
+    @JsonAlias("date_time")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date createdDate;
 
+    @JsonAlias("license_plate")
     private String licensePlate;
 }
