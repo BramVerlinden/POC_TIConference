@@ -16,7 +16,7 @@ import reactor.core.publisher.Flux;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-
+//controller
 @Controller
 public class CameraMessageController {
 
