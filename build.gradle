@@ -33,7 +33,8 @@ dependencies {
     compile group: 'io.projectreactor', name: 'reactor-core', version: '3.2.5.RELEASE'
     compile group: 'org.springframework.data', name: 'spring-data-mongodb', version: '2.1.4.RELEASE'
     compile group: 'org.mongodb', name: 'mongodb-driver-reactivestreams', version: '1.10.0'
-
+    compile('org.springframework.boot:spring-boot-starter-webflux')
+    compile group: 'org.thymeleaf', name: 'thymeleaf', version: '2.0.5'
 
     //TEST
     testCompile group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.2.0'

@@ -25,7 +25,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent event){
         ObjectMapper mapper = new ObjectMapper();
         try {
-            List<CameraMessage> messages = mapper.readValue(new File("C:\\Users\\yanni\\Documents\\KdG TI\\jaar 3\\TIConference\\POC\\POC_TIConference\\src\\main\\resources\\json\\MOCK_DATA-2.json")
+            List<CameraMessage> messages = mapper.readValue(new File("C:\\Users\\Wannes\\Documents\\GitHub\\POC_TIConference\\src\\main\\resources\\json\\MOCK_DATA-2.json")
                     , new TypeReference<List<CameraMessage>>() {
             });
             repository.saveAll(messages);
