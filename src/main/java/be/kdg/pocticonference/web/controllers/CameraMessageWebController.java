@@ -29,4 +29,9 @@ public class CameraMessageWebController {
     public Flux<CameraMessage> getAllCameraMessages() {
         return restController.cameraMessageFlux();
     }
+
+    @GetMapping("/")
+    Mono<String> home() {
+        return Mono.just("cameramessage");
+    }
 }

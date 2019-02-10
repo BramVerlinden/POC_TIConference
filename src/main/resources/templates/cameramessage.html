@@ -18,7 +18,7 @@
 </table>
 </body>
 <script>
-    var eventSource = new EventSource("http://localhost:8080/CameraMessages");
+    var eventSource = new EventSource("http://localhost:3000/cameramessage");
     eventSource.onmessage = function (event) {
         var data = JSON.parse(event.data);
         var table = document.getElementById("camera-table");
