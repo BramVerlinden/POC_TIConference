@@ -37,7 +37,6 @@ dependencies {
     compile group: 'org.thymeleaf', name: 'thymeleaf', version: '2.0.5'
 
     //TEST
-    testCompile group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.2.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testCompile group: 'io.projectreactor', name: 'reactor-test', version: '3.1.0.RELEASE'
 
