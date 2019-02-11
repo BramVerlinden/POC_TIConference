@@ -2,6 +2,7 @@ package be.kdg.pocticonference.web.controllers;
 
 import be.kdg.pocticonference.model.CameraMessage;
 import be.kdg.pocticonference.services.api.CameraMessageService;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ public class CameraMessageController {
 
 
     @GetMapping("/CameraMessage/{id}")
-    public Mono<CameraMessage> cameraMessageMono(@PathVariable Integer id){
+    public Mono<CameraMessage> cameraMessageMono(@PathVariable ObjectId id){
         return cameraMessageService.findCameraMessageById(id);
     }
 

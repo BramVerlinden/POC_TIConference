@@ -1,6 +1,7 @@
 package be.kdg.pocticonference.web.controllers;
 
 import be.kdg.pocticonference.model.CameraMessage;
+import org.bson.types.ObjectId;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ public class CameraMessageWebController {
 
     @GetMapping(value = "/cameramessage/{id}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody
-    public Mono<CameraMessage> getCameraMessage(@PathVariable int id) {
+    public Mono<CameraMessage> getCameraMessage(@PathVariable ObjectId id) {
         return restController.cameraMessageMono(id);
     }
 

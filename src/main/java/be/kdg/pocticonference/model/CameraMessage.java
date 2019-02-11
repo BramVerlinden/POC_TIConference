@@ -17,13 +17,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class CameraMessage {
 
 
-    private ObjectId _id;
-    private int camera_id;
     @Id
-    private int id;
-
-    private String date_time;
-
-    @JsonAlias("license_plate")
+    private ObjectId _id;
+    private int messageId;
+    private int cameraId;
+    private String timestamp;
     private String licensePlate;
 }
