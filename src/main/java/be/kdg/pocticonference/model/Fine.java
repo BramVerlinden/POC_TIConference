@@ -4,13 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Document(collection = "fine")
+@Document(collection = "Fine")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,9 +19,8 @@ import java.util.Date;
 public class Fine {
 
     @Id
-    private int id;
+    private ObjectId _id;
     private int fineAmount;
     private String licensePlate;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private Date createdDate;
+    private String date_time;
 }

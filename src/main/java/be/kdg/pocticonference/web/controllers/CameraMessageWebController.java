@@ -32,6 +32,6 @@ public class CameraMessageWebController {
 
     @GetMapping("/")
     Mono<String> home() {
-        return Mono.just("cameramessage");
+        return Mono.just("cameramessage.html");
     }
 }
