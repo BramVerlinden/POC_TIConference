@@ -23,7 +23,7 @@ public class ReactiveMongoTest {
 
     @Test
     public void givenCamera_whenFindByAllByCamera(){
-        Flux<CameraMessage> messageFlux = repository.findAllByCameraId(1);
+        //Flux<CameraMessage> messageFlux = repository.findAllByCameraId(1);
 
         /*StepVerifier
                 .create(messageFlux)
