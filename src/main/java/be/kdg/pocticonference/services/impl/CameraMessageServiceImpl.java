@@ -3,6 +3,7 @@ package be.kdg.pocticonference.services.impl;
 import be.kdg.pocticonference.model.CameraMessage;
 import be.kdg.pocticonference.repository.CameraMessageRepository;
 import be.kdg.pocticonference.services.api.CameraMessageService;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -16,7 +17,7 @@ public class CameraMessageServiceImpl implements CameraMessageService {
    }
 
     @Override
-    public Mono<CameraMessage> findCameraMessageById(int id) {
+    public Mono<CameraMessage> findCameraMessageById(ObjectId id) {
         return cameraMessageRepository.findById(id);
     }
 
