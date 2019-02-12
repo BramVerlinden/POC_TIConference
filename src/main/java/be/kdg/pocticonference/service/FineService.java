@@ -45,7 +45,7 @@ public class FineService {
     }
 
 
-
+    @Scheduled(fixedDelay = 1000)
     public void detect() {
         Flux<CameraMessage> messagesFlux = cameraMessageService.getAllMessages();
        messagesFlux.subscribe(cameraMessage -> {
