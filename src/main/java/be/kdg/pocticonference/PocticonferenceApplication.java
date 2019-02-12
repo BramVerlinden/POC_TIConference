@@ -29,7 +29,7 @@ public class PocticonferenceApplication {
         try {
             messageJson = new String(Files.
                     readAllBytes(
-                            Paths.get("C:\\Users\\yanni\\Documents\\KdG TI\\jaar 3\\TIConference\\POC\\POC_TIConference\\src\\main\\resources\\data.json")));
+                            Paths.get("/Users/dennis/Documents/KDG/2018-2019/TI Conference/POC_TIConference/src/main/resources/data.json")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,10 +37,8 @@ public class PocticonferenceApplication {
         CameraMessage[] messageArray = gson.fromJson(messageJson, CameraMessage[].class);
         List<CameraMessage> messages = Arrays.asList(messageArray);
         return args -> {
-            repo.deleteAll().thenMany(
                     Flux.fromIterable(messages)
                     .flatMap(repo::save)
-            )
                     .thenMany(repo.findAll())
                     .subscribe(System.out::println);
             fineService.detect();

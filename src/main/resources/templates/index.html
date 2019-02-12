@@ -4,32 +4,45 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<table class="table" id="camera-table">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Date and Time</th>
-        <th>License Plate</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+<body style="display: flex; flex-direction: row">
+<div style="width: 30%; text-align: center">
+    <h1 style="background-color: cadetblue">CameraMessages</h1>
+    <table class="table" id="camera-table" style="width: 100%">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date and Time</th>
+            <th>License Plate</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<div style="width: 40%; margin-left: 10%; text-align: center">
+    <h1 style="background-color: lightcoral">Fines</h1>
+    <table class="table" id="fines-table" style="width: 100%">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date and Time</th>
+            <th>License Plate</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
 </body>
 <script>
-    var eventSource = new EventSource("http://localhost:8080/web/messages");
-    var counter = 1;
-    eventSource.onmessage = function (event) {
-        var data = JSON.parse(event.data);
-        var id = data.id;
-        if (id == counter) {
-            fillTable(event);
-            counter++;
-        }
+    var eventSourceMessages = new EventSource("http://localhost:8080/web/messages");
+    var eventSourceFines = new EventSource("http://localhost:8080/web/fines");
+    eventSourceMessages.onmessage = function (event) {
+        fillTableMessages(event);
     };
 
-    function fillTable(event) {
+    function fillTableMessages(event) {
         var data = JSON.parse(event.data);
         var table = document.getElementById("camera-table");
         var row = table.insertRow(1);
@@ -44,6 +57,30 @@
         cell1.innerHTML = '<td>' + id + '</td>';
         cell2.innerHTML = '<td>' + date_time + '</td>';
         cell3.innerHTML = '<td>' + licenseplate + '</td>';
+    }
+
+    eventSourceFines.onmessage = function (event) {
+        fillTableFines(event);
+    };
+
+    function fillTableFines(event) {
+        var data = JSON.parse(event.data);
+        var table = document.getElementById("fines-table");
+        var row = table.insertRow(1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+
+        var id = data.id;
+        var amount = data.fineAmount;
+        var date_time = data.date_time;
+        var licenseplate = data.licensePlate;
+
+        cell1.innerHTML = '<td>' + id + '</td>';
+        cell2.innerHTML = '<td>' + date_time + '</td>';
+        cell3.innerHTML = '<td>' + licenseplate + '</td>';
+        cell4.innerHTML = '<td>' + amount + '</td>';
     }
 </script>
 </html>

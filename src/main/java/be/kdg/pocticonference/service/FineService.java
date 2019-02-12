@@ -57,8 +57,7 @@ public class FineService {
     }
 
     public Flux<Fine> getFines() {
-        Flux<Fine> fineFlux = fineRepository.findAll();
-        return fineRepository.findAll();
+        return fineRepository.findWithTailableCursorBy();
     }
 
     public Flux<Fine> saveAll(Flux<Fine> fines){
