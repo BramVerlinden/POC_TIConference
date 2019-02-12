@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+
 @Service
 public class CameraMessageService {
     private final CameraMessageRepository repo;
@@ -16,6 +18,7 @@ public class CameraMessageService {
 
     public Flux<CameraMessage> getAllMessages(){
         return repo.findAll();
+
     }
 
     public Mono<CameraMessage> getMessageById(String id){
