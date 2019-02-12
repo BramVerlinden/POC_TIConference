@@ -25,7 +25,7 @@ public class PocticonferenceApplication {
         try {
             messageJson = new String(Files.
                     readAllBytes(
-                            Paths.get("/Users/dennis/Documents/KDG/2018-2019/TI Conference/POC_TIConference/src/main/resources/data.json")));
+                            Paths.get("C:\\Users\\yanni\\Documents\\KdG TI\\jaar 3\\TIConference\\POC\\POC_TIConference\\src\\main\\resources\\data.json")));
         } catch (IOException e) {
             e.printStackTrace();
         }
