@@ -19,7 +19,17 @@
 </body>
 <script>
     var eventSource = new EventSource("http://localhost:8080/web/messages");
+    var counter = 1;
     eventSource.onmessage = function (event) {
+        var data = JSON.parse(event.data);
+        var id = data.id;
+        if (id == counter) {
+            fillTable(event);
+            counter++;
+        }
+    };
+
+    function fillTable(event) {
         var data = JSON.parse(event.data);
         var table = document.getElementById("camera-table");
         var row = table.insertRow(1);
