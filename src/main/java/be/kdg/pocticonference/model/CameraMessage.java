@@ -19,4 +19,6 @@ public class CameraMessage {
     private String timestamp;
     @NonNull
     private String licensePlate;
+
+
 }
