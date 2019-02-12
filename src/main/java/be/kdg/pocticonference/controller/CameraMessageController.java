@@ -17,7 +17,7 @@ public class CameraMessageController {
         this.svc = svc;
     }
 
-    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(produces = "text/event-stream")
     public Flux<CameraMessage> getAllMessages(){
         return svc.getAllMessages();
     }
