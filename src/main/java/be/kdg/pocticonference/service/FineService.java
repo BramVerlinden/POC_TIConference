@@ -4,13 +4,16 @@ import be.kdg.pocticonference.model.CameraMessage;
 import be.kdg.pocticonference.model.Fine;
 import be.kdg.pocticonference.repository.FineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.http.MediaType;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +25,10 @@ public class FineService {
     private CameraMessageService cameraMessageService;
     private FineRepository fineRepository;
     private int id=2;
-    private String licenseplate = "5-ABC-123";
+    private final String LICENSEPLATE = "1-YSG-123";
+
+    @Autowired
+    private ReactiveMongoTemplate template;
 
     public FineService(CameraMessageService cameraMessageService, FineRepository fineRepository) {
         this.cameraMessageService = cameraMessageService;
@@ -39,19 +45,15 @@ public class FineService {
     }
 
 
-    @Autowired
-    private void detect() {
 
-        cameraMessageService.getAllMessages().subscribe( cameraMessage -> {
-            Fine fine = new Fine(cameraMessage.getId(), 50, cameraMessage.getLicensePlate(), LocalDateTime.now().toString());
-            WebClient.RequestHeadersSpec<?> request = WebClient
-                    .create()
-                    .post()
-                    .uri("http://localhost:8080/rest/fines/fine")
-                    .body(BodyInserters.fromObject(fine))
-                    .header("Content-Type", "application/json");
-            request.exchange();
-        });
+    public void detect() {
+        Flux<CameraMessage> messagesFlux = cameraMessageService.getAllMessages();
+       messagesFlux.subscribe(cameraMessage -> {
+           if(cameraMessage.getLicensePlate().equals(LICENSEPLATE)){
+               Fine fine = new Fine(cameraMessage.getId(), 50, cameraMessage.getLicensePlate(), LocalDateTime.now().toString());
+               fineRepository.save(fine).subscribe();
+           }
+       });
     }
 
     public Flux<Fine> getFines() {

@@ -3,7 +3,9 @@ package be.kdg.pocticonference;
 
 import be.kdg.pocticonference.model.CameraMessage;
 import be.kdg.pocticonference.repository.CameraMessageRepository;
+import be.kdg.pocticonference.service.FineService;
 import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,7 +22,7 @@ import java.util.List;
 public class PocticonferenceApplication {
 
     @Bean
-    CommandLineRunner demoData(CameraMessageRepository repo){
+    CommandLineRunner demoData(CameraMessageRepository repo, FineService fineService){
         String messageJson = null;
         try {
             messageJson = new String(Files.
@@ -39,6 +41,7 @@ public class PocticonferenceApplication {
             )
                     .thenMany(repo.findAll())
                     .subscribe(System.out::println);
+            fineService.detect();
         };
     }
 
