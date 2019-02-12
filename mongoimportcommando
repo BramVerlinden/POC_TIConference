@@ -1,1 +1,3 @@
 "C:\Program Files\MongoDB\Server\4.0\bin\mongoimport" --type json --db poc --collection CameraMessage --host localhost --port 27017 "c:\mongopoc\data.json" --jsonArray
+
+"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe" --dbpath="c:\mongopoc\db"

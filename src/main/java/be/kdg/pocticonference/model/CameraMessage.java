@@ -1,26 +1,22 @@
 package be.kdg.pocticonference.model;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "CameraMessage")
+@Document
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 public class CameraMessage {
 
 
     @Id
-    private ObjectId _id;
-    private int messageId;
+    private String id;
+    @NonNull
     private int cameraId;
+    @NonNull
     private String timestamp;
+    @NonNull
     private String licensePlate;
 }
